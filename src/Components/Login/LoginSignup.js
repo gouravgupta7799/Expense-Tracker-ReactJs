@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import classes from './LoginSignup.module.css'
-const id =
+
+const id = 
 
 export default function LoginSignup() {
 
+  let navigation = useNavigate()
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
@@ -66,6 +68,8 @@ export default function LoginSignup() {
         const data = await res.json()
         console.log('User has successfully logged in')
         console.log(data)
+        navigation("/home");
+
       } else {
         let errorMessage = "authentication failed"
         throw new Error(errorMessage)
@@ -93,6 +97,7 @@ export default function LoginSignup() {
 
         {isLogInForm ? <button className={classes['button']}>Login</button> : <button className={classes['button']}>SignUp</button>}
         <span className={classes['toggle']} onClick={() => { setIsLogInForm(!isLogInForm) }}>{isLogInForm ? "Dont have an acount? signup" : "Have an account? Login"}</span>
+        <span className={classes['toggle']} onClick={() => { }}>Forget Passsword</span>
       </form>
 
     </div>
