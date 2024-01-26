@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import classes from './LoginSignup.module.css'
 
-const id = 
+const id = 'AIzaSyBDX2dCgYMzE3M68vDLr2nOnkfZKq-XUio'
 
 export default function LoginSignup() {
 
