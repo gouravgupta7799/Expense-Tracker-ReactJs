@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import classes from './LoginSignup.module.css'
+import AuthContext from '../StoreContext/Auth-Context'
 
-const id = 'AIzaSyBDX2dCgYMzE3M68vDLr2nOnkfZKq-XUio'
+const id = ''
 
 export default function LoginSignup() {
 
@@ -11,6 +12,7 @@ export default function LoginSignup() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const [isLogInForm, setIsLogInForm] = useState(false);
+  const authCtx = useContext(AuthContext);
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
@@ -68,7 +70,8 @@ export default function LoginSignup() {
         const data = await res.json()
         console.log('User has successfully logged in')
         console.log(data)
-        navigation("/home");
+        authCtx.login(data.idToken)
+        navigation("/");
 
       } else {
         let errorMessage = "authentication failed"
