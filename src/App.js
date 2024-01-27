@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import AuthContext from './Components/StoreContext/Auth-Context';
 import Root from './Components/Pages/Root'
 import Profile from './Components/Pages/Profile';
+import Verifaction from './Components/Pages/Varification';
+import Welcome from './Components/Pages/Welcome'
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
         <Routes>
           <Route path='/' element={!authCtx.isLoggedIn ? <LoginSignup /> : <Root />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/verifaction' element={<Verifaction />} />
+          <Route path='/welcome' element={<Welcome />} />
         </Routes>
       </BrowserRouter>
 

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from "../StoreContext/Auth-Context";
 import classes from './Profile.module.css'
+import { useNavigate } from 'react-router-dom';
 const id = ''
 
 export default function Profile() {
@@ -9,6 +10,7 @@ export default function Profile() {
   const [fullName, setFullName] = useState("")
   const [emailId, setEmailId] = useState("")
   const [photo, setPhoto] = useState("")
+  const history = useNavigate()
 
 
   const fetchData = async () => {
@@ -55,6 +57,7 @@ export default function Profile() {
 
       const data = await respnse.json()
       console.log(data)
+      history('/')
 
     } catch (error) {
       console.error("submiting error", error)

@@ -32,9 +32,25 @@
   font-size: 20px;
   margin: 1.5rem 0 0 0;
   margin-bottom: 5px;
+  text-decoration: none;
 }
 
 .toggle:hover {
   color: rgb(243, 14, 14);
 
+}
+
+.emailVarification {
+  background: #aa71c4;
+  color: white;
+  padding: 3px 11px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+
+}
+
+.emailVarification:hover {
+  background: rgb(196, 192, 192);
 }

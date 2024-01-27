@@ -17,6 +17,7 @@ export default function HomePage() {
           your profile is incomplete
           <Link className={classes['toggle']} to="/Profile">Complete now</Link>
         </div>
+        <Link className={classes['emailVarification']} to="/verifaction">varify Email</Link>
       </header>
 
     </>

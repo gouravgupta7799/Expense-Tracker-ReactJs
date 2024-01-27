@@ -88,7 +88,7 @@ export default function LoginSignup() {
   return (
     <div className={classes["formPage"]}>
       <form action="submit" onSubmit={submitFormHandler} className={classes['form']}>
-        <h1>{isLogInForm ? 'Login' : 'Sign Up'}</h1>
+        <h2>{isLogInForm ? 'Login' : 'Sign Up'}</h2>
         <label htmlFor="email">Email</label>
         <input id='useEmail' type='email' ref={emailRef} required />
 
@@ -99,8 +99,11 @@ export default function LoginSignup() {
         {!isLogInForm && <input id='userconfirmPassword' type='password' ref={confirmPasswordRef} required />}
 
         {isLogInForm ? <button className={classes['button']}>Login</button> : <button className={classes['button']}>SignUp</button>}
-        <span className={classes['toggle']} onClick={() => { setIsLogInForm(!isLogInForm) }}>{isLogInForm ? "Dont have an acount? signup" : "Have an account? Login"}</span>
-        <span className={classes['toggle']} onClick={() => { }}>Forget Passsword</span>
+
+        <div className={classes['tog']}>
+          <span className={classes['toggle']} onClick={() => { setIsLogInForm(!isLogInForm) }}>{isLogInForm ? "Dont have an acount? signup" : "Have an account? Login"}</span>
+          <span className={classes['toggle']} onClick={() => { }}>Forget Passsword</span>
+        </div>
       </form>
 
     </div>
