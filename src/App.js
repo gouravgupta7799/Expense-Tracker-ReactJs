@@ -9,6 +9,7 @@ import Profile from './Components/Pages/Profile/Profile';
 import Verifaction from './Components/Pages/Varification';
 import Welcome from './Components/Pages/Welcome'
 import ForgetPassword from './Components/Pages/ForgetPassword/ForgetPassword';
+import Expense from './Components/Expenses/Expenses'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/verifaction' element={<Verifaction />} />
           <Route path='/forgetPassword' element={<ForgetPassword />} />
           <Route path='/welcome' element={<Welcome />} />
+          <Route path='/expense' element={authCtx.isLoggedIn && <Expense />} />
         </Routes>
       </BrowserRouter>
 
