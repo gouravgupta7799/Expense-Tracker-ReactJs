@@ -1,5 +1,5 @@
 import React from 'react'
-import HomePage from '../Home/HomePage'
+import HomePage from './Home/HomePage'
 
 
 export default function Root() {

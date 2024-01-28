@@ -29,11 +29,18 @@ const Verifaction = () => {
     })
 
     const data = await response.json()
+
     if (response.ok) {
       if (data.email === email) {
-        console.log('user email VERIFY')
-        history("/welcome")
+        alert('user email VERIFY link send to your mail')
+        console.log(data)
+        setTimeout(() => {
+          history('/')
+        }, 2000)
       }
+    }
+    else {
+      alert(data.error.message)
     }
 
     if (!response.ok) {

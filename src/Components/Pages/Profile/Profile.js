@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import AuthContext from "../StoreContext/Auth-Context";
+import AuthContext from "../../StoreContext/Auth-Context";
 import classes from './Profile.module.css'
 import { useNavigate } from 'react-router-dom';
 const id = ''

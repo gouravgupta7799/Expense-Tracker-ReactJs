@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import classes from './LoginSignup.module.css'
-import AuthContext from '../StoreContext/Auth-Context'
+import AuthContext from '../../StoreContext/Auth-Context'
 
 const id = ''
 
@@ -11,7 +11,7 @@ export default function LoginSignup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-  const [isLogInForm, setIsLogInForm] = useState(false);
+  const [isLogInForm, setIsLogInForm] = useState(true);
   const authCtx = useContext(AuthContext);
 
   const submitFormHandler = async (event) => {
@@ -102,7 +102,7 @@ export default function LoginSignup() {
 
         <div className={classes['tog']}>
           <span className={classes['toggle']} onClick={() => { setIsLogInForm(!isLogInForm) }}>{isLogInForm ? "Dont have an acount? signup" : "Have an account? Login"}</span>
-          <span className={classes['toggle']} onClick={() => { }}>Forget Passsword</span>
+          <Link to='/forgetPassword' className={classes['toggle']} style={{ textDecoration: 'none' }}>Forget Passsword</Link>
         </div>
       </form>
 
