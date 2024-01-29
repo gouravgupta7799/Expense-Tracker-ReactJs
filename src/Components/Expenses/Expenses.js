@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ExpenseForm from './ExpenseForm'
+import classes from './Expenses.module.css'
 
 export default function Expenses() {
 
@@ -12,33 +13,25 @@ export default function Expenses() {
 
   return (
     <>
-      <div>
-        <ExpenseForm addExpense={addExpenseHandler} />
-      </div>
-      <div>
-        {
-          items.length > 0 && (
-            <div>
-              {items.map((expense, index) => (
-                <div key={index}>
-                  <p> Amount : {expense.amount} = Description :{" "}
-                    {expense.description} = Category : {expense.category}
-                    <button
-                      // onClick={() => handleEdit(expense.id)}
-                      style={{ padding: "5px", borderRadius: "10px", margin: "5px", backgroundColor: "red", color: "yellow", backgroundColor: "blue", cursor: "pointer", }}>
-                      Edit
-                    </button>
-                    <button
-                      // onClick={() => handleDelete(expense.id)}
-                      style={{ padding: "5px", borderRadius: "10px", margin: "5px", color: "yellow", backgroundColor: "blue", cursor: "pointer", }}>
-                      Delete
-                    </button>
-                  </p>
-                </div>
+      <ExpenseForm addExpense={addExpenseHandler} />
+      <div className={classes.main}>
+        <h2 className={classes.header}> Expnse list</h2>
+        {items.length === 0 ? <p>no expnse add yet</p> :
+          (
+            <ul className={classes['table-list']}>
+              {items.map((expense) => (
+                <li key={expense.id} className={classes.li}>
+                  <p><strong>{expense.description}</strong></p> - <p>${expense.amount}</p> <p>({expense.category})</p>
+                  <li className={classes['inner-li']}>
+                    <button className={classes['editBtn']} onClick={() => { }}>Edit</button>
+                    <button className={classes['deleteBtn']} onClick={() => { }}>X</button>
+                  </li>
+                </li>
+
               ))}
-            </div>
-          )
-        }
+            </ul>
+          )}
+
       </div>
     </>
   )

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-
+import classes from './ExpenseForm.module.css'
 
 export default function ExpenseForm(props) {
 
@@ -23,19 +23,9 @@ export default function ExpenseForm(props) {
 
   }
 
-
-
   return (
     <div>
-
-      <div
-        style={{
-          textAlign: "center",
-          padding: "20px",
-          backgroundColor: "yellow",
-          color: "blue",
-        }}
-      >
+      <div className={classes['form']} >
         <h1>Expense Form</h1>
         <form onSubmit={handleSubmit} style={{ padding: "20px" }}>
           <input
@@ -43,20 +33,20 @@ export default function ExpenseForm(props) {
             name="amount"
             type="number"
             placeholder="Enter Amount"
-            style={{ padding: "10px", margin: "5px", borderRadius: "10px" }}
+            className={classes['input-fild']}
           />
           <input
             ref={des}
             name="description"
             type="text"
             placeholder="Enter Description"
-            style={{ padding: "10px", margin: "5px", borderRadius: "10px" }}
+            className={classes['input-fild']}
           />
           <select
             ref={categories}
             name="categories"
             id=""
-            style={{ padding: "10px", borderRadius: "10px", margin: "5px" }}
+            className={classes['input-fild']}
           >
             <option value="Category">Category</option>
             <option value="Food">Food</option>
@@ -67,16 +57,7 @@ export default function ExpenseForm(props) {
           <input
             type="submit"
             value="Submit"
-            style={{
-              padding: "10px",
-              margin: "5px",
-              borderRadius: "10px",
-              backgroundColor: "red",
-              color: "yellow",
-              borderRadius: "10px",
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
+            className={classes['button']}
           />
         </form>
       </div>

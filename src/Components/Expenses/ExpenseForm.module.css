@@ -1,0 +1,23 @@
+.form {
+  text-align: center;
+  padding: 20px;
+  background: yellow;
+  color: blue;
+}
+
+.input-fild {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.button {
+
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  background: red;
+  color: yellow;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,0 +1,51 @@
+.main {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 8px;
+
+}
+
+.table-list{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  text-align: center;
+}
+
+.li {
+  width: 65%;
+  margin: 10px;
+  list-style-type: none;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inner-li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editBtn {
+  background: #3dd310;
+  margin: 0 6px;
+  padding: 8px;
+  border-radius: 7px;
+}
+
+.deleteBtn {
+  background: red;
+  margin: 0 6px;
+  padding: 8px;
+  border-radius: 7px;
+}
