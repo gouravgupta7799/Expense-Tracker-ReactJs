@@ -15,7 +15,7 @@ export default function ExpenseForm(props) {
     const entered3 = categories.current.value;
 
     console.log(entered1, entered2, entered3)
-    props.addExpense({ amount: entered1, description: entered2, category: entered3 })
+    props.addExpense({ id: Math.random(), amount: entered1, description: entered2, category: entered3 })
 
     amount.current.value = ''
     des.current.value = ''
