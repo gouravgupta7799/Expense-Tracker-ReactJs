@@ -1,13 +1,11 @@
 .main {
-  width: 80%;
+  width: 70%;
   margin-left: 10%;
   margin-top: 10px;
   padding: 20px;
+  box-shadow: 0px 1px 0px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-
-}
-
-.table-list{
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,13 +14,15 @@
 
 .header {
   text-align: center;
+  margin: 20px;
 }
 
 .li {
-  width: 65%;
-  margin: 10px;
+  width: 100%;
+  margin: 10px 10px;
   list-style-type: none;
   padding: 10px;
+  box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #fff;
   border: 2px solid black;
@@ -31,24 +31,95 @@
   align-items: center;
 }
 
-.inner-li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.sidebar {
+  width: 300px;
+  height: 150px;
+  /* border: 2px solid black; */
+  float: right;
+  margin: 3% 4%;
+  padding: 10px;
+  box-shadow: 0px 1px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
-.editBtn {
+.sideHeading {
+  text-align: center;
+  font-size: 20px;
+}
+
+.totalAmount {
+  text-align: center;
+  margin: 3%;
+}
+
+.box {
+  width: 300px;
+  margin: 0 10px;
+}
+
+.boxs {
+  margin: 0 10px;
+}
+
+.edit {
+  border: none;
+  color: white;
   background: #3dd310;
-  margin: 0 6px;
+  margin: 0 5px;
   padding: 8px;
   border-radius: 7px;
   cursor: pointer;
 }
 
-.deleteBtn {
-  background: red;
-  margin: 0 6px;
+.delete {
+  background-color: red;
+  color: white;
+  border: none;
+  margin: 0 5px;
   padding: 8px;
   border-radius: 7px;
   cursor: pointer;
+
+}
+
+@media only screen and (max-width: 767px) {
+  .main {
+    width: 100%;
+    padding: 10px;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  .li {
+    width: 325px;
+  }
+
+  .sidebar {
+    width: 150;
+    height: 100px;
+    padding: 5px;
+    margin: 6% 10%;
+  }
+
+  .box {
+    width: 150px;
+    margin: 0 6px;
+  }
+
+  .boxs {
+    margin: 0 2px;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 }
