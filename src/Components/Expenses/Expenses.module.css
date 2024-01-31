@@ -123,3 +123,20 @@
   }
 
 }
+
+.newBtn {
+  background: rgb(192, 148, 36);
+  color: white;
+  box-shadow: 1px 2px 3px 0 rgba(252, 152, 2, 0.1);
+  margin: 0 5px;
+  padding: 8px;
+  border-radius: 7px;
+  cursor: pointer;
+  border: none;
+}
+
+.newBtn:hover {
+  font-weight: bold;
+  background: rgb(240, 172, 2);
+
+}

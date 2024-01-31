@@ -5,25 +5,25 @@ export default function Expenses(props) {
 
 
   const [isTheme, setIsTheme] = useState(false)
-  
-  const totalAmount =props.items.reduce((accumulator, expense) => {
+
+  const totalAmount = props.items.reduce((accumulator, expense) => {
     return accumulator + Number(expense.amount);
   }, 0);
 
   return (
-    <React.Fragment><div className={`${classes.main} ${isTheme ? classes.dark : ''}`}>
+    <React.Fragment><div className={`${classes.main} ${classes.dark}`}>
       <h2 className={classes.header}> Expnse list</h2>
       {props.items.length === 0 ? <p>no expnse add yet</p> :
         (
           <ul className={classes.ul}>
             {props.items.map((expense) => (
-              <li key={expense.id} className={`${classes.li}  ${isTheme ? classes.dark : ''}`}>
+              <li key={expense.id} className={`${classes.li}  ${classes.dark}`}>
                 <div className={classes.box}>{expense.description}</div>
                 <div className={classes.boxs}><p>{expense.amount}₹</p>
                   <p>{expense.category} </p></div>
                 <div className={classes.buttons}>
-                  <button onClick={() => { }} className={classes.edit}>Edit</button>
-                  <button onClick={() => { }} className={classes.delete}>Delete</button>
+                  <button onClick={() => { props.updateData(expense) }} className={classes.edit}>Edit</button>
+                  <button onClick={() => { props.deleteData(expense.id) }} className={classes.delete}>Delete</button>
                 </div>
               </li>
             ))}
@@ -37,10 +37,10 @@ export default function Expenses(props) {
 
     </div>
 
-      <span className={`${classes.sidebar}  ${isTheme ? classes.dark : ''}`}>
+      <span className={`${classes.sidebar}  ${classes.dark}`}>
         <h3 className={classes.sideHeading}>Total Amount</h3>
         <h1 className={classes.totalAmount}> {totalAmount}₹</h1>
-        {totalAmount > 1000 && <button className={classes.newBtn} onClick={() => { }}>Active Premium</button>}
+        {totalAmount > 10 && <button className={classes.newBtn} onClick={() => { }}>Active Premium</button>}
       </span>
     </React.Fragment>
   )

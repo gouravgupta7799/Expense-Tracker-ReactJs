@@ -70,7 +70,7 @@ export default function LoginSignup() {
         const data = await res.json()
         console.log('User has successfully logged in')
         console.log(data)
-        authCtx.login(data.idToken,data.email)
+        authCtx.login(data.idToken, data.email)
         navigation("/");
 
       } else {
