@@ -1,18 +1,21 @@
 
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from 'react-redux';
 import classes from './HomePage.module.css'
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../StoreContext/Auth-Context";
-
+import { AuthAction } from '../../StoreContext/AuthSlice';
+import { useSelector } from "react-redux";
 
 
 export default function HomePage() {
 
-  const authCtx = useContext(AuthContext)
+  const dispatch = useDispatch()
   const history = useNavigate()
 
+  const isLoggedIn = useSelector((state) => state.authRdx.isLoggedIn)
+
   const logoutHandler = () => {
-    authCtx.logout();
+    dispatch(AuthAction.logout())
     console.log('user Log out')
     history("/")
   }
@@ -23,39 +26,39 @@ export default function HomePage() {
       <header className={classes.header}>
         <h3 style={{ color: 'white' }}>Welcome to Expense Tracker!!!</h3>
 
-        {authCtx.isLoggedIn && (
+        {isLoggedIn && (
           <Link to="/expense">
             <div className={classes.logo}>+ Add Expense</div>
           </Link>
         )}
         <nav>
           <ul>
-            {!authCtx.isLoggedIn && (
+            {!isLoggedIn && (
               <li>
                 <Link to="/">Login</Link>
               </li>
             )}
 
-            {authCtx.isLoggedIn && (
+            {isLoggedIn && (
 
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
             )}
 
-            {authCtx.isLoggedIn && (
+            {isLoggedIn && (
               <li>
                 <Link className={classes['toggle']} to="/forgetPassword">forgetPassword</Link>
               </li>
             )}
 
-            {authCtx.isLoggedIn && (
+            {isLoggedIn && (
               <li>
                 <Link className={classes['emailVarification']} to="/verifaction">varify Email</Link>
               </li>
             )}
 
-            {authCtx.isLoggedIn && (
+            {isLoggedIn && (
               <li>
                 <button onClick={logoutHandler}>Logout</button>
               </li>

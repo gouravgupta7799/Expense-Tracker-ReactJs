@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import classes from './Varification.module.css'
-import AuthContext from "../StoreContext/Auth-Context";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const id = ''
 
 const Verifaction = () => {
-  const authCtx = useContext(AuthContext)
+  const idToken = useSelector(state => state.idToken)
   const [email, setEmail] = useState("")
   const [isLoding, setLoding] = useState(false)
   const history = useNavigate()
@@ -21,7 +21,7 @@ const Verifaction = () => {
       method: 'POST',
       body: JSON.stringify({
         requestType: "VERIFY_EMAIL",
-        idToken: authCtx.idToken,
+        idToken: idToken,
       }),
       headers: {
         'Content-Type': 'application/json'

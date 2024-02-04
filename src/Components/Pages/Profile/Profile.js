@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
-import AuthContext from "../../StoreContext/Auth-Context";
+import React, { useEffect, useState } from 'react'
 import classes from './Profile.module.css'
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const id = ''
 
 export default function Profile() {
 
-  const authCtx = useContext(AuthContext);
+  const idToken = useSelector(state => state.authRdx.idToken);
   const [fullName, setFullName] = useState("")
   const [emailId, setEmailId] = useState("")
   const [photo, setPhoto] = useState("")
@@ -20,7 +20,7 @@ export default function Profile() {
         {
           method: 'POST',
           body: JSON.stringify({
-            idToken: authCtx.idToken,
+            idToken: idToken,
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export default function Profile() {
       const respnse = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${id}`, {
         method: "POST",
         body: JSON.stringify({
-          idToken: authCtx.idToken,
+          idToken: idToken,
           displayName: fullName,
           photoUrl: photo,
           returnSecureToken: true
@@ -68,7 +68,7 @@ export default function Profile() {
 
   useEffect(() => {
     fetchData()
-  }, [authCtx.idToken])
+  }, [idToken])
 
 
   return (

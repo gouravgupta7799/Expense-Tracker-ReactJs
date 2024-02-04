@@ -1,21 +1,18 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Expenses from './Expenses'
 import ExpenseForm from './ExpenseForm'
-import AuthContext from '../StoreContext/Auth-Context'
+import { useSelector, useDispatch } from 'react-redux'
+import { ExpenseAction } from '../StoreContext/ExpenseSlice'
 
 export default function ExpensesPage() {
 
-  const authCtx = useContext(AuthContext)
-  const emailId = authCtx.email.split("@")
+  const dispatch = useDispatch()
+  const items = useSelector(state => state.expenseRdx.items)
+  const email = useSelector(state => state.authRdx.email)
+  const emailId = email.split("@")
 
-  const [items, setItems] = useState([])
   const [updateData, setUpdateData] = useState()
-
-  function addExpenseHandler(item) {
-    setItems([...items, item])
-    postDataToBanckend(item)
-  }
 
   async function postDataToBanckend(items) {
     const res = await fetch(`https://expensetracker-ce323-default-rtdb.firebaseio.com/${emailId[0]}.json`, {
@@ -28,6 +25,8 @@ export default function ExpensesPage() {
     const data = await res.json()
     if (res.ok) {
       console.log("post succesful", data)
+      dispatch(ExpenseAction.addExpense({ it: items }))
+
     }
   }
   async function deleteDatafromBanckend(id) {
@@ -37,7 +36,7 @@ export default function ExpensesPage() {
       })
 
     if (res.ok) {
-      setItems(items.filter((expense) => expense.id !== id))
+      dispatch(ExpenseAction.deleteExpense({ id: id }))
       alert('Item deleted successfully');
     } else {
       console.error('Failed to delete item');
@@ -64,8 +63,7 @@ export default function ExpensesPage() {
     const data = await res.json()
 
     if (res.ok) {
-      const it = items.filter((expense) => expense.id !== item.id)
-      setItems([...it, data])
+      dispatch(ExpenseAction.updateExpense({ id: item.id, data: data }))
       alert('Item update successfully');
     } else {
       console.error('Failed to update item');
@@ -87,14 +85,14 @@ export default function ExpensesPage() {
         data[key].id = key
         expItems.push(data[key])
       }
-      setItems([...expItems])
+      dispatch(ExpenseAction.getExpense({ expItems: expItems }))
     }
     getDataFromBanckend()
   }, [])
 
   return (
     <div>
-      <ExpenseForm addExpense={addExpenseHandler} updateData={updateData} updateDataFromBanckend={updateDataFromBanckend} />
+      <ExpenseForm addExpense={postDataToBanckend} updateData={updateData} updateDataFromBanckend={updateDataFromBanckend} />
       <Expenses items={items} deleteData={deleteDatafromBanckend} updateData={updateDataHandler} />
     </div>
   )

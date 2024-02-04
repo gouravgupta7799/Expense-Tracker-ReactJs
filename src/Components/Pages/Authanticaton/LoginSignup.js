@@ -1,18 +1,20 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import classes from './LoginSignup.module.css'
-import AuthContext from '../../StoreContext/Auth-Context'
+import { AuthAction } from '../../StoreContext/AuthSlice'
+import { useDispatch } from 'react-redux'
 
 const id = ''
 
 export default function LoginSignup() {
 
+  const dispatech = useDispatch()
   let navigation = useNavigate()
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const [isLogInForm, setIsLogInForm] = useState(true);
-  const authCtx = useContext(AuthContext);
+
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
@@ -69,8 +71,7 @@ export default function LoginSignup() {
       if (res.ok) {
         const data = await res.json()
         console.log('User has successfully logged in')
-        console.log(data)
-        authCtx.login(data.idToken, data.email)
+        dispatech(AuthAction.login({ idToken: data.idToken, email: data.email }))
         navigation("/");
 
       } else {
