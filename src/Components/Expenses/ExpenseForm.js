@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import classes from './ExpenseForm.module.css'
+import { useSelector } from 'react-redux'
 
 export default function ExpenseForm(props) {
 
+  const isTheme = useSelector((state) => state.authRdx.isDarkMode)
   const [updateDataState, setupdateDataState] = useState(false)
   const amount = useRef()
   const des = useRef()
@@ -49,7 +51,7 @@ export default function ExpenseForm(props) {
 
   return (
     <div>
-      <div className={classes['form']} >
+      <div className={`${classes.form} ${isTheme ? classes.dark : ''}`} >
         <h1>Expense Form</h1>
         <form onSubmit={!updateDataState ? handleSubmit : updatehandle} style={{ padding: "20px" }}>
           <input

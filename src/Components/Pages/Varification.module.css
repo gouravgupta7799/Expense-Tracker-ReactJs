@@ -20,3 +20,13 @@
   font-size: 1.5rem;
   padding: 5px;
 }
+
+.form{
+  min-height: 25rem;
+  padding-top: 3%;
+}
+
+.dark {
+  background-color: #333333;
+  color: #ffffff;
+}

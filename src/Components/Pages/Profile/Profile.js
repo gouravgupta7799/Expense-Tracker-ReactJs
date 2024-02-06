@@ -7,6 +7,7 @@ const id = ''
 export default function Profile() {
 
   const idToken = useSelector(state => state.authRdx.idToken);
+  const isTheme = useSelector((state) => state.authRdx.isDarkMode)
   const [fullName, setFullName] = useState("")
   const [emailId, setEmailId] = useState("")
   const [photo, setPhoto] = useState("")
@@ -74,7 +75,7 @@ export default function Profile() {
   return (
     <div>
       <form onSubmit={submitHandler}
-        className={classes.main}>
+        className={`${classes.main} ${isTheme ? classes.dark : ''}`}>
         <h3>contact details</h3>
         <h5>email Id:- {emailId}</h5>
 

@@ -8,6 +8,7 @@ const initialAuthState = {
   isLoggedIn: !!intitalToken,
   isPrime: false,
   email: intitalEmail,
+  isDarkMode: false
 }
 
 const AuthSlice = createSlice({
@@ -27,9 +28,15 @@ const AuthSlice = createSlice({
       state.idToken = null
       state.email = ''
       state.isLoggedIn = false
+      state.isDarkMode = false
+      state.isPrime = false
     },
     makeIsPrime(state) {
       state.isPrime = true;
+    },
+
+    makeItDarkMode(state) {
+      state.isDarkMode = !state.isDarkMode;
     }
   }
 })

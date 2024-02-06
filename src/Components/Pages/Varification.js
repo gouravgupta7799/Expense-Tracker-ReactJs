@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import classes from './Varification.module.css'
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -7,7 +7,8 @@ import { useSelector } from "react-redux";
 const id = ''
 
 const Verifaction = () => {
-  const idToken = useSelector(state => state.idToken)
+  const idToken = useSelector(state => state.authRdx.idToken)
+  const isTheme = useSelector((state) => state.authRdx.isDarkMode)
   const [email, setEmail] = useState("")
   const [isLoding, setLoding] = useState(false)
   const history = useNavigate()
@@ -50,7 +51,7 @@ const Verifaction = () => {
 
   }
   return (<>
-    <form onSubmit={submitHandler} className={classes['form']} >
+    <form onSubmit={submitHandler} className={`${classes['form']} ${isTheme ? classes.dark : ''}`} >
       <input type="email" className={classes['form_input']} placeholder="email" onChange={(e) => { setEmail(e.target.value) }} value={email} />
       {!isLoding ? <button className={classes['button']}>Verify</button> : <button className={classes['button']} disabled>isLoding...</button>}
     </form>

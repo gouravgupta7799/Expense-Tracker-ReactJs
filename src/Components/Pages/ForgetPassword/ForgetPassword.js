@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import classes from './ForgetPassword.module.css'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 const id = ''
 
 export default function ForgetPassword() {
@@ -8,6 +9,8 @@ export default function ForgetPassword() {
   const history = useNavigate()
 
   const emailInputRef = useRef()
+
+  const isTheme = useSelector((state) => state.authRdx.isDarkMode)
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -41,12 +44,12 @@ export default function ForgetPassword() {
   }
 
   return (
-    <div>  <form className={classes.form} onSubmit={submitHandler}>
+    <div>  <form className={`${classes.form} ${isTheme ? classes.dark : ''}`} onSubmit={submitHandler}>
       <div className={classes.control}>
-        <label htmlFor='email'>Email Id</label>
+        <label htmlFor='email' style={isTheme ? { color: 'white' } : { color: 'black' }}>Email Id</label>
         <input type='email' id='email' ref={emailInputRef} />
       </div>
-      <div className={classes.action}>
+      <div className={`${classes.action} ${isTheme ? classes.dark : ''}`}>
         <button>Change Password</button>
       </div>
     </form></div>

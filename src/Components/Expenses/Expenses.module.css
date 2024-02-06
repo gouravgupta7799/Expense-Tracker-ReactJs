@@ -140,3 +140,36 @@
   background: rgb(240, 172, 2);
 
 }
+
+.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.download-prime {
+  font-size: large;
+  color:white;
+  background-color: rgb(8, 225, 241);
+  padding: 7px 12px;
+  border-radius: 9px;
+  margin: 7px;
+  cursor: pointer;
+}
+.download-prime:hover{
+  color: rgb(117, 117, 240);
+    background-color: rgb(225, 240, 16);
+}
+
+.dark-mode{
+  font-size: large;
+    color: white;
+    background-color: black;
+    padding: 7px 12px;
+    border-radius: 9px;
+    margin: 7px;
+    cursor: pointer;
+}
+.dark-mode:hover {
+  color: black;
+  background-color: white;
+}

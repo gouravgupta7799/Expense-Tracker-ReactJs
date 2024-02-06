@@ -21,3 +21,8 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.dark {
+  background-color: #333333;
+  color: #ffffff;
+}

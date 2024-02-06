@@ -6,6 +6,8 @@
   box-shadow: grey 1px 3px 10px 5px;
   margin-top: 2.5%;
   justify-content: space-between;
+  padding: 1%;
+  min-height: 25rem;
 }
 
 .input {
@@ -42,4 +44,9 @@
 
 .int>label {
   font-weight: bold;
+}
+
+.dark {
+  background-color: #333333;
+  color: #ffffff;
 }
