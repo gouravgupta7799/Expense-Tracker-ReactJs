@@ -4,7 +4,7 @@ import classes from './LoginSignup.module.css'
 import { AuthAction } from '../../StoreContext/AuthSlice'
 import { useDispatch } from 'react-redux'
 
-const id = ''
+const id = 'AIzaSyBDX2dCgYMzE3M68vDLr2nOnkfZKq-XUio'
 
 export default function LoginSignup() {
 
