@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Root />
-
+        <Greet />
         <Routes>
           <Route path='/' element={!isLoggedIn && <LoginSignup />} />
           <Route path='/profile' element={<Profile />} />
