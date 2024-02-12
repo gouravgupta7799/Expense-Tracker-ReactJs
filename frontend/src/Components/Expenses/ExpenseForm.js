@@ -17,7 +17,7 @@ export default function ExpenseForm(props) {
     const entered2 = des.current.value;
     const entered3 = categories.current.value;
 
-    props.addExpense({ id: Math.random(), amount: entered1, description: entered2, category: entered3 })
+    props.addExpense({ amount: entered1, description: entered2, category: entered3 })
 
     amount.current.value = ''
     des.current.value = ''
@@ -41,7 +41,7 @@ export default function ExpenseForm(props) {
     const entered2 = des.current.value;
     const entered3 = categories.current.value;
 
-    props.updateDataFromBanckend({ id: props.updateData.id, amount: entered1, description: entered2, category: entered3 })
+    props.updateDataFromBanckend({ id: props.updateData._id, amount: entered1, description: entered2, category: entered3 })
     setupdateDataState(false)
     amount.current.value = ''
     des.current.value = ''

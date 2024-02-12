@@ -148,28 +148,45 @@
 
 .download-prime {
   font-size: large;
-  color:white;
+  color: white;
   background-color: rgb(8, 225, 241);
   padding: 7px 12px;
   border-radius: 9px;
   margin: 7px;
   cursor: pointer;
 }
-.download-prime:hover{
+
+.download-prime:hover {
   color: rgb(117, 117, 240);
-    background-color: rgb(225, 240, 16);
+  background-color: rgb(225, 240, 16);
 }
 
-.dark-mode{
+.dark-mode {
   font-size: large;
-    color: white;
-    background-color: black;
-    padding: 7px 12px;
-    border-radius: 9px;
-    margin: 7px;
-    cursor: pointer;
+  color: white;
+  background-color: black;
+  padding: 7px 12px;
+  border-radius: 9px;
+  margin: 7px;
+  cursor: pointer;
 }
+
 .dark-mode:hover {
   color: black;
   background-color: white;
+}
+
+.light-mode {
+  font-size: large;
+  color: black;
+  background-color: white;
+  padding: 7px 12px;
+  border-radius: 9px;
+  margin: 7px;
+  cursor: pointer;
+}
+
+.light-mode:hover {
+  color: white;
+  background-color: black;
 }

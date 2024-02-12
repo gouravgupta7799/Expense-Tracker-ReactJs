@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import classes from './Profile.module.css'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-const id = ''
 
+const url = 'http://localhost:4000'
 export default function Profile() {
 
   const idToken = useSelector(state => state.authRdx.idToken);
@@ -17,23 +17,21 @@ export default function Profile() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${id}`,
+        `${url}/profile`,
         {
-          method: 'POST',
-          body: JSON.stringify({
-            idToken: idToken,
-          }),
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-          },
+            'Authorization': idToken
+          }
         }
       );
       const data = await response.json();
-      if (data.users && data.users.length > 0) {
-        const user = data.users[0];
+      if (data.user) {
+        const user = data.user;
         setFullName(user.displayName || '');
         setPhoto(user.photoUrl || '');
-        setEmailId(user.email || '');
+        setEmailId(user.userEmail || '');
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -43,22 +41,23 @@ export default function Profile() {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      const respnse = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${id}`, {
+      const respnse = await fetch(`${url}/profile`, {
         method: "POST",
         body: JSON.stringify({
-          idToken: idToken,
           displayName: fullName,
           photoUrl: photo,
-          returnSecureToken: true
         }),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': idToken
         }
       })
 
       const data = await respnse.json()
-      console.log(data)
-      history('/')
+      if (data) {
+        alert('updated')
+        history('/')
+      }
 
     } catch (error) {
       console.error("submiting error", error)

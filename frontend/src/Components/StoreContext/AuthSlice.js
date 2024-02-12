@@ -2,11 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const intitalToken = localStorage.getItem("token")
 const intitalEmail = localStorage.getItem("email")
+const intitalprime = JSON.parse(localStorage.getItem("isPrime"))
 
 const initialAuthState = {
   idToken: intitalToken,
   isLoggedIn: !!intitalToken,
-  isPrime: false,
+  isPrime: intitalprime,
   email: intitalEmail,
   isDarkMode: false
 }
@@ -29,9 +30,9 @@ const AuthSlice = createSlice({
       state.email = ''
       state.isLoggedIn = false
       state.isDarkMode = false
-      state.isPrime = false
     },
-    makeIsPrime(state) {
+    makeIsPrime(state, action) {
+      localStorage.setItem('isPrime', action.payload.isPrime)
       state.isPrime = true;
     },
 

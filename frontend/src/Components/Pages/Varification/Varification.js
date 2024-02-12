@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
-const id = ''
-
 const Verifaction = () => {
   const idToken = useSelector(state => state.authRdx.idToken)
   const isTheme = useSelector((state) => state.authRdx.isDarkMode)
@@ -18,7 +16,7 @@ const Verifaction = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     setLoding(true)
-    const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${id}`, {
+    const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=`, {
       method: 'POST',
       body: JSON.stringify({
         requestType: "VERIFY_EMAIL",

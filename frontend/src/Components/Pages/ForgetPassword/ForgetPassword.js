@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import classes from './ForgetPassword.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-const id = ''
 
 export default function ForgetPassword() {
 
@@ -11,20 +10,21 @@ export default function ForgetPassword() {
   const emailInputRef = useRef()
 
   const isTheme = useSelector((state) => state.authRdx.isDarkMode)
+  const idToken = useSelector(state => state.authRdx.idToken);
 
   const submitHandler = async (e) => {
     e.preventDefault()
 
     const enteredEmail = emailInputRef.current.value
 
-    const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${id}`, {
+    const res = await fetch(`http://localhost:4000/password/forgotpassword`, {
       method: 'POST',
       body: JSON.stringify({
         email: enteredEmail,
-        requestType: "PASSWORD_RESET",
       }),
       headers: {
-        'content-type': "application/json"
+        'Content-Type': 'application/json',
+        'Authorization': idToken
       }
     })
 

@@ -4,8 +4,6 @@ import classes from './LoginSignup.module.css'
 import { AuthAction } from '../../StoreContext/AuthSlice'
 import { useDispatch } from 'react-redux'
 
-const id = 'AIzaSyBDX2dCgYMzE3M68vDLr2nOnkfZKq-XUio'
-
 export default function LoginSignup() {
 
   const dispatech = useDispatch()
@@ -36,7 +34,7 @@ export default function LoginSignup() {
             let errorMessage = "Check your password again"
             throw new Error(errorMessage)
           }
-          url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${id}`
+          url = `http://localhost:4000/auth/signup`
           AuthinactionDetails = {
             email: enteredEmail,
             password: enteredPassword,
@@ -49,7 +47,7 @@ export default function LoginSignup() {
         }
 
       } else {
-        url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${id}`
+        url = `http://localhost:4000/auth/login`
         enteredEmail = emailRef.current.value
         enteredPassword = passwordRef.current.value
 
@@ -71,11 +69,14 @@ export default function LoginSignup() {
       if (res.ok) {
         const data = await res.json()
         console.log('User has successfully logged in')
-        dispatech(AuthAction.login({ idToken: data.idToken, email: data.email }))
+        if (data.idToken && data.email) {
+          dispatech(AuthAction.login({ idToken: data.idToken, email: data.email }))
+        }
         navigation("/");
 
       } else {
-        let errorMessage = "authentication failed"
+        const data = await res.json()
+        let errorMessage = data.error
         throw new Error(errorMessage)
       }
     }

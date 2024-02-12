@@ -4,42 +4,49 @@ import Expenses from './Expenses'
 import ExpenseForm from './ExpenseForm'
 import { useSelector, useDispatch } from 'react-redux'
 import { ExpenseAction } from '../StoreContext/ExpenseSlice'
+const url = 'http://localhost:4000/expensetracker'
 
 export default function ExpensesPage() {
 
   const dispatch = useDispatch()
   const items = useSelector(state => state.expenseRdx.items)
-  const email = useSelector(state => state.authRdx.email)
-  const emailId = email.split("@")
+  const idToken = useSelector(state => state.authRdx.idToken);
 
   const [updateData, setUpdateData] = useState()
 
   async function postDataToBanckend(items) {
-    const res = await fetch(`https://expensetracker-ce323-default-rtdb.firebaseio.com/${emailId[0]}.json`, {
+    const res = await fetch(`${url}/expenseData`, {
       method: 'POST',
       body: JSON.stringify({ ...items }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': idToken
       }
     })
     const data = await res.json()
     if (res.ok) {
-      console.log("post succesful", data)
-      dispatch(ExpenseAction.addExpense({ it: items }))
+      console.log(data)
+      dispatch(ExpenseAction.addExpense({ ...data }))
 
     }
   }
   async function deleteDatafromBanckend(id) {
-    const res = await fetch(`https://expensetracker-ce323-default-rtdb.firebaseio.com/${emailId[0]}/${id}.json`,
+    const res = await fetch(`${url}/deleteexpenseData`,
       {
         method: "DELETE",
+        body: JSON.stringify({ id: id }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': idToken
+        }
       })
 
+    const data = await res.json()
     if (res.ok) {
       dispatch(ExpenseAction.deleteExpense({ id: id }))
-      alert('Item deleted successfully');
+      alert(data.msg);
     } else {
-      console.error('Failed to delete item');
+      console.error(data.msg);
     }
   }
 
@@ -48,43 +55,47 @@ export default function ExpensesPage() {
   }
 
   async function updateDataFromBanckend(item) {
-    const res = await fetch(`https://expensetracker-ce323-default-rtdb.firebaseio.com/${emailId[0]}/${item.id}.json`, {
+    const res = await fetch(`${url}/updateexpenseData`, {
       method: "PUT",
       body: JSON.stringify({
+        "id": item.id,
         "amount": item.amount,
         "category": item.category,
         "description": item.description,
-        "id": item.id
+
       }),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': idToken
       }
     })
     const data = await res.json()
 
     if (res.ok) {
-      dispatch(ExpenseAction.updateExpense({ id: item.id, data: data }))
+      dispatch(ExpenseAction.updateExpense({ id: item.id, data: item }))
       alert('Item update successfully');
     } else {
-      console.error('Failed to update item');
+      console.error(data.error);
     }
   }
 
 
   useEffect(() => {
     async function getDataFromBanckend() {
-      const res = await fetch(`https://expensetracker-ce323-default-rtdb.firebaseio.com/${emailId[0]}.json`, {
+      const res = await fetch(`${url}/getexpenseData`, {
         method: "GET",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': idToken
         }
       })
       const data = await res.json()
       const expItems = []
       for (const key in data) {
-        data[key].id = key
         expItems.push(data[key])
       }
+      expItems.pop()
+      localStorage.setItem('isPrime', data.isPrime)
       dispatch(ExpenseAction.getExpense({ expItems: expItems }))
     }
     getDataFromBanckend()
